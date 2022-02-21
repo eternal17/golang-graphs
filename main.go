@@ -49,6 +49,17 @@ func contains(s []*Room, k string) bool {
 	return false
 }
 
+// handling all the errors with specific messages
+func allErrors() {
+	// check if file contains start and end
+	for i := range readAntsFile("ants.txt") {
+		if readAntsFile("ants.txt")[i] != "##start" {
+			fmt.Println("ERROR: invalid data format, no start room found")
+		}
+	}
+
+}
+
 func readAntsFile(filename string) []string {
 	file, _ := os.Open(filename)
 	scanned := bufio.NewScanner(file)
@@ -64,13 +75,8 @@ func readAntsFile(filename string) []string {
 
 func main() {
 	test := &Graph{}
-	// rooms := []string{}
-	// for _, room := range rooms {
-	// 	test.AddRoom(room)
-	// }
 
-	//add rooms
-	// fmt.Println(strings.Split(readAntsFile("ants.txt")[2], " ")[0])
+	allErrors()
 
 	// reading all rooms
 	// adding all rooms
